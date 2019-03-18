@@ -83,13 +83,18 @@ app.put('/updateUserData', (req, res) => {
     );
 });
 
+app.get('/checkConnection', (req, res) => {
+    res.send('server works');
+});
 
-mongoose.connect('mongodb://localhost:27017/random-background', (err, database) => {
+const dbURL = 'mongodb+srv://Ignat:12345678S@randombackgroud-rbupq.mongodb.net/RandomBackground?retryWrites=true';
+
+mongoose.connect(dbURL, { useNewUrlParser: true }, (err, database) => {
     if (err) {
         return console.log(err);
     }
     db = database;
-    app.listen(8080, function () {
+    app.listen(8000, '0.0.0.0', function () {
         console.log('Server started');
     })
 });
